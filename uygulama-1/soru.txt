@@ -1,0 +1,23 @@
+Kurs 1:
+    başlık: Php Kursu
+    alt baslik: Sıfırdan ileri seviye Php ile web geliştirme
+    resim: 1.jpg
+    yayın tarihi: 01.01.2023
+    yorum sayısı: 100
+    beğeni sayısı: 300
+
+Kurs 2:
+    başlık: Python Kursu
+    alt baslik: Sıfırdan ileri seviye Python prrogramlama
+    resim: 2.jpg
+    yayın tarihi: 03.03.2023
+    yorum sayısı: 200
+    beğeni sayısı: 400
+
+Kurs 3:
+    başlık: Node.js Kursu
+    alt baslik: Sıfırdan ileri seviye Node.js ile web geliştirme
+    resim: 3.jpg
+    yayın tarihi: 05.05.2023
+    yorum sayısı: 300
+    beğeni sayısı: 500
