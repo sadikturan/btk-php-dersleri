@@ -1,0 +1,5 @@
+1- Kategoriler numeric dizisini oluşturunuz. 
+2- Kurslar dizisini oluşturunuz.
+3- Kategoriler dizisini alfabetik olarak sıralayınız.
+4- h1 etiketinin altına "5 kategoride 10 film listelenmiştir" şeklinde bir yazı ekleyiniz.
+5- Filmler listesine yeni bir film ekleyiniz.
