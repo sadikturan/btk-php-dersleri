@@ -1,3 +1,4 @@
+<?php include 'partials/_variables.php'?>
 <?php include 'partials/_header.php' ?>
 
 <main>
