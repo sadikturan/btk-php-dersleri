@@ -1,3 +1,5 @@
+<?php $title="anasayfa"?>
+<?php require 'partials/_variables.php'?>
 <?php include 'partials/_header.php' ?>
 
 <main>
