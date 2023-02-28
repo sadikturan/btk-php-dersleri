@@ -18,7 +18,12 @@ $sehirler = array(
     "54" => "Sakarya",
 );
 
-
+$hobiler = array(
+    "1" => "Sinema",
+    "2" => "Spor",
+    "3" => "Müzik",
+    "4" => "Kitap"
+);
 
 $kurslar = array(
     "1" => array(
