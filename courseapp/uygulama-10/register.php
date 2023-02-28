@@ -16,25 +16,25 @@
         if(empty($_POST["username"])) {
             $usernameErr = "username gerekli alan.";
         } else {
-            $username = $_POST["username"];
+            $username = safe_html($_POST["username"]);
         }
 
         if(empty($_POST["email"])) {
             $emailErr = "email gerekli alan.";
         } else {
-            $email = $_POST["email"];
+            $email = safe_html($_POST["email"]);
         }
 
         if(empty($_POST["password"])) {
             $passwordErr = "password gerekli alan.";
         } else {
-            $password = $_POST["password"];
+            $password = safe_html($_POST["password"]);
         }
 
         if($_POST["password"] != $_POST["repassword"]) {
             $repasswordErr = "parola tekrar alanı eşleşmiyor.";
         } else {
-            $repassword = $_POST["repassword"];
+            $repassword = safe_html($_POST["repassword"]);
         }
 
         if($_POST["city"] == -1 ) {
@@ -50,6 +50,8 @@
         }
 
         print_r($hobbies);
+
+        echo $username;
         
     }
 
