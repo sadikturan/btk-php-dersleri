@@ -10,6 +10,16 @@ $kategoriler = array(
     array("kategori_adi" => "Mobil Uygulamalar", "aktif" => false)
 );
 
+$sehirler = array(
+    "06" => "Ankara",
+    "41" => "Kocaeli",
+    "34" => "İstanbul",
+    "53" => "Rize",
+    "54" => "Sakarya",
+);
+
+
+
 $kurslar = array(
     "1" => array(
         "baslik" => "Php Kursu",
