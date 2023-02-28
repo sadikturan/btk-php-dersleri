@@ -7,8 +7,9 @@
 <?php include "partials/_navbar.php" ?>
 
 <?php
-    $usernameErr = $emailErr = $passwordErr = $repasswordErr = $cityErr = $hobilerErr = "";
+    $usernameErr = $emailErr = $passwordErr = $repasswordErr = $cityErr = $hobbiesErr = "";
     $username = $email = $password = $repassword = $city = "";
+    $hobbies = [];
 
     if($_SERVER["REQUEST_METHOD"]=="POST") {
 
@@ -42,11 +43,13 @@
             $city = $_POST["city"];
         }
 
-        if(!isset($_POST["hobiler"])) {
-            $hobilerErr = "hobi seçmelisiniz.";
+        if(!isset($_POST["hobbies"])) {
+            $hobbiesErr = "hobi seçmelisiniz.";
         } else {
-            $hobiler = $_POST["hobiler"];
+            $hobbies = $_POST["hobbies"];
         }
+
+        print_r($hobbies);
         
     }
 
@@ -92,15 +95,22 @@
             </div>
             <div class="mb-3">
                 <label for="hobiler">Hobiler</label>
-                <div class="form-check">
-                    <input type="checkbox" name="hobiler[]" value="sinema" id="hobiler_0">
-                    <label for="hobiler_0" class="form-check-label">Sinema</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" name="hobiler[]" value="spor" id="hobiler_1">
-                    <label for="hobiler_1" class="form-check-label">Spor</label>
-                </div>
-                <div class="text-danger"><?php echo $hobilerErr; ?></div>
+
+                <?php foreach($hobiler as $id => $hobi): ?>
+
+                    <div class="form-check">
+                        <input type="checkbox" name="hobbies[]" 
+                        value="<?php echo $id;?>" 
+                        id="hobbies_<?php echo $id;?>"
+                        <?php if (in_array($id, $hobbies)) echo 'checked' ?>
+                        >
+                        <label for="hobbies_<?php echo $id;?>" class="form-check-label"><?php echo $hobi;?></label>
+                    </div>
+
+                <?php endforeach; ?>
+                     
+               
+                <div class="text-danger"><?php echo $hobbiesErr; ?></div>
             </div>
             <button type="submit" class="btn btn-primary">Kayıt Ol</button>
            </form>
