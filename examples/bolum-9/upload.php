@@ -1,13 +1,20 @@
 <?php
 
     if(isset($_POST["btnFileUpload"]) && $_POST["btnFileUpload"]=="Upload") {
-        echo "<pre>";
-        print_r($_FILES["fileToUpload"]);
-        print_r($_POST);
-        echo "</pre>";
+       
+        // Dosya seçilmiş mi?
+        // dosya boyutu
+        // dosya ismini kontrol - random
+        // dosya uzantısı (jpg, png)
 
         $dest_path = "./uploadedFiles/";
         $filename = $_FILES["fileToUpload"]["name"];
+
+        if(empty($filename)) {
+            echo "dosya seçiniz";
+        }
+
+
         $fileSourcePath = $_FILES["fileToUpload"]["tmp_name"];
         
         $fileDestPath = $dest_path.$filename;
