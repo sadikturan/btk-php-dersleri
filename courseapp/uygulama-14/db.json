@@ -1,0 +1,8 @@
+{
+    "kategoriler": [
+        {"id": 1, "kategori_adi": "Programlama", "aktif": true},
+        {"id": 2, "kategori_adi": "Web Geliştirme", "aktif": false},
+        {"id": 3, "kategori_adi": "Veri Analizi", "aktif": false},
+        {"id": 3, "kategori_adi": "Mobil Uygulama", "aktif": false}
+    ]
+}
