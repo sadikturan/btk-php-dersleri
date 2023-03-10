@@ -8,7 +8,6 @@ function getDb() {
     return $data;
 }
 
-
 function kursEkle(&$kurslar, string $baslik,string $altBaslik,string $resim,string $yayinTarihi,int $yorumSayisi=0,int $begeniSayisi=0, bool $onay=true) {
     $yeni_kurs[count($kurslar) + 1] = array(
         "baslik" => $baslik,
