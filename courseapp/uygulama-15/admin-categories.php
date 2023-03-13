@@ -3,6 +3,7 @@
     require "libs/functions.php";
 ?>
 
+<?php include "partials/_message.php" ?>
 <?php include "partials/_header.php" ?>
 <?php include "partials/_navbar.php" ?>
 

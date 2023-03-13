@@ -1,13 +1,6 @@
 <?php
     require "libs/variables.php";
     require "libs/functions.php";
-
-    session_start();
-
-    if(isset($_SESSION["message"])) {
-        echo "<div class='alert alert-danger mb-0 text-center'>".$_SESSION["message"]."</div>";
-        unset($_SESSION["message"]);
-    }
 ?>
 
 <?php include "partials/_header.php" ?>
