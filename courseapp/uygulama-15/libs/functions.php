@@ -59,6 +59,19 @@ function createCategory(string $kategori) {
     return $stmt;
 }
 
+function createCourse(string $baslik, string $altBaslik, string $resim, int $yorumSayisi = 0, int $begeniSayisi=0,int $onay=0) {
+    include "ayar.php";
+
+    $query = "INSERT INTO kurslar(baslik,altBaslik,resim,yorumSayisi,begeniSayisi,onay) VALUES (?,?,?,?,?,?)";
+    $stmt = mysqli_prepare($baglanti,$query);
+
+    mysqli_stmt_bind_param($stmt, 'sssiii', $baslik,$altBaslik,$resim,$yorumSayisi,$begeniSayisi,$onay);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $stmt;
+}
+
 
 function getDb() {
     $myfile = fopen("db.json","r");
