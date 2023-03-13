@@ -10,6 +10,19 @@ function getCategories() {
     return $sonuc;
 }
 
+function createCategory(string $kategori) {
+    include "ayar.php";
+
+    $query = "INSERT INTO kategoriler(kategori_adi) VALUES (?)";
+    $stmt = mysqli_prepare($baglanti,$query);
+
+    mysqli_stmt_bind_param($stmt, 's', $kategori);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $stmt;
+}
+
 
 function getDb() {
     $myfile = fopen("db.json","r");
