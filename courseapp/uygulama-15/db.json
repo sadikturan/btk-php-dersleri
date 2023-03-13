@@ -1,0 +1,71 @@
+{
+    "kategoriler": [
+        {
+            "id": 1,
+            "kategori_adi": "Programlama",
+            "aktif": true
+        },
+        {
+            "id": 2,
+            "kategori_adi": "Web Geli\u015ftirme",
+            "aktif": false
+        },
+        {
+            "id": 3,
+            "kategori_adi": "Veri Analizi",
+            "aktif": false
+        },
+        {
+            "id": 3,
+            "kategori_adi": "Mobil Uygulama",
+            "aktif": false
+        }
+    ],
+    "kurslar": [
+        {
+            "baslik": "Php Kursu",
+            "altBaslik": "S\u0131f\u0131rdan ileri seviye Php ile web geli\u015ftirme kursu",
+            "resim": "1.jpg",
+            "yayinTarihi": "01.01.2023",
+            "yorumSayisi": 0,
+            "begeniSayisi": 10,
+            "onay": true
+        },
+        {
+            "baslik": "Python Kursu",
+            "altBaslik": "S\u0131f\u0131rdan ileri seviye Python ile web geli\u015ftirme kursu",
+            "resim": "2.jpg",
+            "yayinTarihi": "01.01.2023",
+            "yorumSayisi": 10,
+            "begeniSayisi": 10,
+            "onay": false
+        },
+        {
+            "baslik": "Node.js Kursu",
+            "altBaslik": "S\u0131f\u0131rdan ileri seviye Node.js ile web geli\u015ftirme kursu",
+            "resim": "3.jpg",
+            "yayinTarihi": "01.01.2023",
+            "yorumSayisi": 10,
+            "begeniSayisi": 10,
+            "onay": true
+        },
+        {
+            "baslik": "Django.js Kursu",
+            "altBaslik": "S\u0131f\u0131rdan ileri seviye Django ile web geli\u015ftirme kursu",
+            "resim": "1.jpg",
+            "yayinTarihi": "01.01.2023",
+            "yorumSayisi": 0,
+            "begeniSayisi": 10,
+            "onay": true
+        },
+        {
+            "baslik": "html dersleri",
+            "altBaslik": "html",
+            "resim": "1.jpg",
+            "yayinTarihi": "d",
+            "yorumSayisi": 0,
+            "begeniSayisi": 0,
+            "onay": true
+        }
+    ]
+}
