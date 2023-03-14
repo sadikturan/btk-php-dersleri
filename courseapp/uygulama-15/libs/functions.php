@@ -28,6 +28,15 @@ function getCategoryById(int $id) {
     return $sonuc;
 }
 
+function getCourseById(int $id) {
+    include "ayar.php";
+    
+    $query = "SELECT * from kurslar WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+}
+
 function editCategory(int $id, string $category) {
     include "ayar.php";
 
@@ -36,6 +45,16 @@ function editCategory(int $id, string $category) {
     mysqli_close($baglanti);
     return $sonuc;
 }
+
+function editCourse(int $id, string $baslik, string $altBaslik, string $resim, int $onay) {
+    include "ayar.php";
+
+    $query = "UPDATE kurslar SET baslik='$baslik', altBaslik='$altBaslik', resim='$resim',onay='$onay' WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+}
+
 
 function deleteCategory(int $id) {
     include 'ayar.php';
