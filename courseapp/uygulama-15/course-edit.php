@@ -31,10 +31,11 @@
             $altBaslik = safe_html($_POST["altBaslik"]);
         }
 
-        if(empty($_POST["resim"])) {
-            $resimErr = "resim gerekli alan.";
+        if(empty($_FILES["imageFile"]["name"])) {
+            $resim = $selectedCourse["resim"];
         } else {
-            $resim = safe_html($_POST["resim"]);
+            uploadImage($_FILES["imageFile"]);
+            $resim = $_FILES["imageFile"]["name"];
         }
 
         $onay = $_POST["onay"] == "on"?1:0;
@@ -55,7 +56,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="baslik">Başlık</label>
                         <input type="text" name="baslik" class="form-control" value="<?php echo $selectedCourse["baslik"];?>">
@@ -66,10 +67,13 @@
                         <textarea name="altBaslik" class="form-control"><?php echo $selectedCourse["altBaslik"];?></textarea>
                         <div class="text-danger"><?php echo $altBaslikErr; ?></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="resim">Resim</label>
-                        <textarea name="resim" class="form-control"><?php echo $selectedCourse["resim"];?></textarea>
+                    <div>
+                        <div class="input-group mb-3">
+                            <input type="file" name="imageFile" id="imageFile" class="form-control">
+                            <label for="imageFile" class="input-group-text">Yükle</label>
+                        </div>
                         <div class="text-danger"><?php echo $resimErr; ?></div>
+                        <img src="img/<?php echo $selectedCourse["resim"];?>" style="width:150px;" alt="">
                     </div>
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="onay" name="onay" 

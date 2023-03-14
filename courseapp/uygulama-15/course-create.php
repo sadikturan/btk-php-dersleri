@@ -26,10 +26,11 @@
             $altBaslik = safe_html($_POST["altBaslik"]);
         }
 
-        if(empty($_POST["resim"])) {
-            $resimErr = "resim gerekli alan.";
+        if(empty($_FILES["imageFile"]["name"])) {
+            $resimErr = "resim seçiniz.";
         } else {
-            $resim = safe_html($_POST["resim"]);
+            uploadImage($_FILES["imageFile"]);
+            $resim = $_FILES["imageFile"]["name"];
         }
 
         if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr)) {
@@ -48,7 +49,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="baslik">Başlık</label>
                         <input type="text" name="baslik" class="form-control" value="<?php echo $baslik;?>">
@@ -59,11 +60,12 @@
                         <textarea name="altBaslik" class="form-control"><?php echo $altBaslik;?></textarea>
                         <div class="text-danger"><?php echo $altBaslikErr; ?></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="resim">Resim</label>
-                        <textarea name="resim" class="form-control"><?php echo $resim;?></textarea>
-                        <div class="text-danger"><?php echo $resimErr; ?></div>
+                    <div class="input-group mb-3">
+                        <input type="file" name="imageFile" id="imageFile" class="form-control">
+                        <label for="imageFile" class="input-group-text">Yükle</label>
                     </div>
+                    <div class="text-danger"><?php echo $resimErr; ?></div>
+
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </form>
            </div>
