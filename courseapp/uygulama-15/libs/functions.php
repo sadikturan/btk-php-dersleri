@@ -13,7 +13,7 @@ function getCategories() {
 function getCourses() {
     include "ayar.php";
 
-    $query = "SELECT * from kurslar";
+    $query = "SELECT k.id,k.baslik,k.resim,k.onay,c.kategori_adi from kurslar k inner join kategoriler c on k.id=c.id";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;

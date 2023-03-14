@@ -20,6 +20,7 @@
                     <th style="width:50px;">Id</th>
                     <th style="width:120px;">Resim</th>
                     <th>Başlık</th>
+                    <th style="width:200px;">Kategori</th>
                     <th style="width:50px;">Onay</th>
                     <th style="width:130px;"></th>
                 </tr>
@@ -30,6 +31,7 @@
                         <td><?php echo $course["id"]?></td>
                         <td><img class="img-fluid" src="img/<?php echo $course["resim"] ?>" alt=""></td>
                         <td><?php echo $course["baslik"]?></td>
+                        <td><?php echo $course["kategori_adi"]?></td>
                         <td>
                             <?php if ($course["onay"]): ?>
                                 <i class="fas fa-check"></i>
