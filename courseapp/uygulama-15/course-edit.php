@@ -16,6 +16,8 @@
     $baslikErr = $baslik = "";
     $altBaslikErr = $altBaslik = "";
     $resimErr = $resim = "";
+    $categoryErr = "";
+    $category = "0";
 
     if($_SERVER["REQUEST_METHOD"]=="POST") {
 
@@ -38,10 +40,16 @@
             $resim = $_FILES["imageFile"]["name"];
         }
 
+        if($_POST["category"] == "0") {
+            $categoryErr = "kategori seçmelisiniz";
+        } else {
+            $category = $_POST["category"];
+        }
+
         $onay = $_POST["onay"] == "on"?1:0;
 
-        if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr)) {
-            editCourse($id,$baslik,$altBaslik,$resim,$onay);
+        if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr) && empty($categoryErr)) {
+            editCourse($id,$baslik,$altBaslik,$resim,$category,$onay);
             $_SESSION["message"] = $baslik." isimli kurs güncellendi";
             $_SESSION["type"] = "success";
             header('Location: admin-courses.php');
@@ -74,6 +82,19 @@
                         </div>
                         <div class="text-danger"><?php echo $resimErr; ?></div>
                         <img src="img/<?php echo $selectedCourse["resim"];?>" style="width:150px;" alt="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Kategori</label>
+                        <select name="category" id="category" class="form-select">
+                            <option value="0" selected>Seçiniz</option>
+                            <?php foreach(getCategories() as $c): ?>
+                                <option value="<?php echo $c["id"];?>"><?php echo $c["kategori_adi"];?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="text-danger"><?php echo $categoryErr; ?></div>
+                        <script type="text/javascript">
+                            document.getElementById("category").value = "<?php echo $selectedCourse["kategori_id"];?>";
+                        </script>
                     </div>
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="onay" name="onay" 
