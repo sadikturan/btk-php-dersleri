@@ -95,6 +95,15 @@ function deleteCategory(int $id) {
     return $sonuc;
 }
 
+function deleteCourse(int $id) {
+    include 'ayar.php';
+
+    $query = "DELETE FROM kurslar WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+}
+
 function createCategory(string $kategori) {
     include "ayar.php";
 
