@@ -11,8 +11,6 @@
     $baslikErr = $baslik = "";
     $altBaslikErr = $altBaslik = "";
     $resimErr = $resim = "";
-    $categoryErr = "";
-    $category = "0";
 
     if($_SERVER["REQUEST_METHOD"]=="POST") {
 
@@ -35,14 +33,8 @@
             $resim = $_FILES["imageFile"]["name"];
         }
 
-        if($_POST["category"] == "0") {
-            $categoryErr = "kategori seçmelisiniz";
-        } else {
-            $category = $_POST["category"];
-        }
-
-        if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr) && empty($categoryErr)) {
-            createCourse($baslik,$altBaslik,$resim,$category);
+        if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr)) {
+            createCourse($baslik,$altBaslik,$resim);
             $_SESSION["message"] = $baslik." isimli kurs eklendi";
             $_SESSION["type"] = "success";
             header('Location: admin-courses.php');
@@ -73,20 +65,6 @@
                         <label for="imageFile" class="input-group-text">Yükle</label>
                     </div>
                     <div class="text-danger"><?php echo $resimErr; ?></div>
-
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Kategori</label>
-                        <select name="category" id="category" class="form-select">
-                            <option value="0" selected>Seçiniz</option>
-                            <?php foreach(getCategories() as $c): ?>
-                                <option value="<?php echo $c["id"];?>"><?php echo $c["kategori_adi"];?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div class="text-danger"><?php echo $categoryErr; ?></div>
-                        <script type="text/javascript">
-                            document.getElementById("category").value = "<?php echo $category;?>";
-                        </script>
-                    </div>
 
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </form>
