@@ -16,6 +16,7 @@
     $baslikErr = $baslik = "";
     $altBaslikErr = $altBaslik = "";
     $resimErr = $resim = "";
+    $aciklamaErr = $aciklama = "";
 
     if($_SERVER["REQUEST_METHOD"]=="POST") {
 
@@ -29,6 +30,12 @@
             $altBaslikErr = "altBaslik gerekli alan.";
         } else {
             $altBaslik = safe_html($_POST["altBaslik"]);
+        }
+
+        if(empty($_POST["aciklama"])) {
+            $aciklamaErr = "aciklama gerekli alan.";
+        } else {
+            $aciklama = safe_html($_POST["aciklama"]);
         }
 
         if(empty($_FILES["imageFile"]["name"])) {
@@ -47,7 +54,7 @@
 
         if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr)) {
 
-            if(editCourse($id,$baslik,$altBaslik,$resim,$onay)) {
+            if(editCourse($id,$baslik,$altBaslik,$aciklama,$resim,$onay)) {
                 clearCourseCategories($id);
                 if(count($categories) > 0) {
                     addCourseCategories($id, $categories);
@@ -76,9 +83,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="altBaslik">Alt Başlık</label>
-                            <textarea name="altBaslik" class="form-control"><?php echo $selectedCourse["altBaslik"];?></textarea>
+                            <input type="text" name="altBaslik" class="form-control" value="<?php echo $selectedCourse["altBaslik"];?>">
                             <div class="text-danger"><?php echo $altBaslikErr; ?></div>
                         </div>
+                        <div class="mb-3">
+                            <label for="aciklama">Açıklama</label>
+                            <textarea name="aciklama" class="form-control"><?php echo $selectedCourse["aciklama"];?></textarea>
+                            <div class="text-danger"><?php echo $aciklamaErr; ?></div>
+                        </div>                        
                         <div>
                             <div class="input-group mb-3">
                                 <input type="file" name="imageFile" id="imageFile" class="form-control">
@@ -130,5 +142,5 @@
         </form>
     </div>
 </div>
-
+<?php include "partials/_editor.php" ?>
 <?php include "partials/_footer.php" ?>
