@@ -10,6 +10,33 @@ function getCategories() {
     return $sonuc;
 }
 
+function getCoursesByFilters($categoryId, $keyword, $page) {
+    include "ayar.php";
+
+    $pageCount = 2;
+    $offset = ($page - 1) * $pageCount; 
+    $query = "";
+    if(!empty($categoryId)) {
+        $query = "from kurs_kategori kc INNER JOIN kurslar k on kc.kurs_id=k.id WHERE kc.kategori_id=$categoryId and onay=1";
+    } else {
+        $query = "from kurslar WHERE onay=1";
+    }
+
+    if(!empty($keyword)) {
+        $query .= " and baslik LIKE '%$keyword%' or altBaslik LIKE '%$keyword%'";
+    }
+
+    $total_sql = "SELECT COUNT(*) ".$query;
+    $count_data = mysqli_query($baglanti,$total_sql);
+    $count = mysqli_fetch_array($count_data)[0];
+    $total_pages = ceil($count / $pageCount);
+
+    $sql = "SELECT * ".$query." LIMIT $offset, $pageCount";
+    $sonuc = mysqli_query($baglanti,$sql);
+    mysqli_close($baglanti);
+    return $sonuc;
+}
+
 function getCourses(bool $anasayfa, bool $onay) {
     include "ayar.php";
 

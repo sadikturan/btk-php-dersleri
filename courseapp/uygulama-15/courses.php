@@ -4,15 +4,19 @@
 ?>
 
 <?php 
-    if(isset($_GET["categoryid"]) && is_numeric($_GET["categoryid"])) {
-        $secilenKategori = $_GET["categoryid"];
-        $kurslar = getCoursesByCategoryId($secilenKategori);
-    } elseif(isset($_GET["q"])) {
-        $kurslar = getCoursesByKeyword($_GET["q"]);
-    }
-    else {
-        $kurslar = getCourses(false,true);
-    }
+
+    $categoryId = "";
+    $keyword = "";
+    $page = 1;
+
+    if(isset($_GET["categoryid"]) && is_numeric($_GET["categoryid"])) 
+        $categoryId = $_GET["categoryid"];
+    if(isset($_GET["q"]))
+        $keyword = $_GET["q"];
+    if(isset($_GET["page"]) && is_numeric($_GET["page"]))
+        $page = $_GET["page"];
+
+    $kurslar = getCoursesByFilters($categoryId, $keyword, $page);   
 ?>
 
 <?php include "partials/_header.php" ?>
@@ -77,8 +81,20 @@
                 </div>
             <?php endif ?>
 
+            <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+
+
         </div>
     </div>
 
+    
 </div>
 <?php include "partials/_footer.php" ?>
