@@ -6,6 +6,7 @@
 
 
 <div class="list-group">
+    <a href="courses.php" class="list-group-item list-group-item-actio">Tüm kurslar</a>
     <?php 
         $sonuc = getCategories();
         while($kategori = mysqli_fetch_assoc($sonuc)): ?>

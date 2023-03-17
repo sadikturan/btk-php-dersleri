@@ -45,6 +45,7 @@
             $resim = $_FILES["imageFile"]["name"];
         }
         $onay = $_POST["onay"] == "on"?1:0;
+        $anasayfa = $_POST["anasayfa"] == "on"?1:0;
 
         $categories = [];
 
@@ -54,7 +55,7 @@
 
         if(empty($baslikErr) && empty($altBaslikErr) && empty($resimErr)) {
 
-            if(editCourse($id,$baslik,$altBaslik,$aciklama,$resim,$onay)) {
+            if(editCourse($id,$baslik,$altBaslik,$aciklama,$resim,$onay,$anasayfa)) {
                 clearCourseCategories($id);
                 if(count($categories) > 0) {
                     addCourseCategories($id, $categories);
@@ -134,6 +135,13 @@
                             <?php echo $selectedCourse["onay"]?"checked":""?>>
                         <label class="form-check-label" for="onay">
                             Onay
+                        </label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="anasayfa" name="anasayfa" 
+                            <?php echo $selectedCourse["anasayfa"]?"checked":""?>>
+                        <label class="form-check-label" for="anasayfa">
+                            Anasayfa
                         </label>
                     </div>
                 </div>
