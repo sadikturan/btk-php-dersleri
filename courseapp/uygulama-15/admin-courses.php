@@ -22,11 +22,12 @@
                     <th>Başlık</th>
                     <th style="width:200px;">Kategori</th>
                     <th style="width:50px;">Onay</th>
+                    <th style="width:50px;">Anasayfa</th>
                     <th style="width:130px;"></th>
                 </tr>
             </thead>
             <tbody>
-                <?php $sonuc = getCourses(); while($course = mysqli_fetch_assoc($sonuc)): ?>
+                <?php $sonuc = getCourses(false,false); while($course = mysqli_fetch_assoc($sonuc)): ?>
                     <tr>
                         <td><?php echo $course["id"]?></td>
                         <td><img class="img-fluid" src="img/<?php echo $course["resim"] ?>" alt=""></td>
@@ -48,6 +49,13 @@
                         </td>
                         <td>
                             <?php if ($course["onay"]): ?>
+                                <i class="fas fa-check"></i>
+                            <?php else: ?>
+                                <i class="fas fa-times"></i>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php if ($course["anasayfa"]): ?>
                                 <i class="fas fa-check"></i>
                             <?php else: ?>
                                 <i class="fas fa-times"></i>
