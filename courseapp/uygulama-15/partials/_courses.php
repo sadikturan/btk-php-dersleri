@@ -23,7 +23,7 @@
                     <div class="col-8">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="<?php echo urlDuzenle($kurs["baslik"]); ?>">
+                                <a href="course-details.php?id=<?php echo $kurs["id"];?>">
                                     <?php echo $kurs["baslik"]; ?>
                                 </a>
                             </h5>
