@@ -16,7 +16,7 @@
     if(isset($_GET["page"]) && is_numeric($_GET["page"]))
         $page = $_GET["page"];
 
-    $kurslar = getCoursesByFilters($categoryId, $keyword, $page);   
+    $res = getCoursesByFilters($categoryId, $keyword, $page);   
 ?>
 
 <?php include "partials/_header.php" ?>
@@ -31,8 +31,8 @@
         <div class="col-9">
             <?php include "partials/_title.php" ?>
 
-            <?php if(mysqli_num_rows($kurslar) > 0): ?>
-                <?php while($kurs = mysqli_fetch_assoc($kurslar)): ?>
+            <?php if(mysqli_num_rows($res["data"]) > 0): ?>
+                <?php while($kurs = mysqli_fetch_assoc($res["data"])): ?>
                     <?php if ($kurs["onay"]): ?>
 
                         <div class="card mb-3">
@@ -81,15 +81,38 @@
                 </div>
             <?php endif ?>
 
+            <?php if($res["total_pages"] > 1):?>
+
             <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+                <ul class="pagination">
+                    <li class="page-item <?php if($x == $page) echo "active";?>">
+                    <?php for($x=1; $x <= $res["total_pages"]; $x++):?>
+                        <li class="page-item <?php if($x == $page) echo "active";?>">
+                            <a class="page-link" href="
+                            
+                                <?php
+                                    $url = "?page=".$x;
+
+                                    if(!empty($categoryId)) {
+                                        $url .= "&categoryid=".$categoryId;
+                                    }
+
+                                    if(!empty($keyword)) {
+                                        $url .= "&q=".$keyword;
+                                    }       
+
+                                    echo $url;
+                                ?>
+                            
+                            ">
+                                <?php echo $x;?>
+                            </a>
+                        </li>
+                     <?php endfor;?>   
+                </ul>
+            </nav>
+
+            <?php endif;?>
 
 
         </div>
