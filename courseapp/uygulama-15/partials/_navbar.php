@@ -1,15 +1,3 @@
-<?php
-
-    if(!empty($_GET['q'])) {
-        $keyword = $_GET['q'];
-
-        $kurslar = array_filter($kurslar, function($kurs) use ($keyword) {
-            return stristr($kurs['baslik'], $keyword) or (stristr($kurs['altBaslik'], $keyword));
-        });
-    }
-
-?>
-
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
     <div class="container">
         <a href="index.php" class="navbar-brand">CourseApp</a>
@@ -45,7 +33,7 @@
             <?php endif; ?>   
         </ul>
 
-        <form action="index.php" class="d-flex" method="get">
+        <form action="courses.php" class="d-flex" method="get">
             <input type="text" name="q" class="form-control me-2" placeholder="Keyword">
             <button type="submit" class="btn btn-warning">Ara</button>
         </form>
