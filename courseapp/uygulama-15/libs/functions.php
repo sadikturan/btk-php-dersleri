@@ -45,6 +45,15 @@ function getCourseById(int $id) {
     return $sonuc;
 }
 
+function getCoursesByCategoryId(int $id) {
+    include "ayar.php";
+    
+    $query = "SELECT * from kurs_kategori kc INNER JOIN kurslar k on kc.kurs_id=k.id WHERE kc.kategori_id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+}
+
 function editCategory(int $id, string $category) {
     include "ayar.php";
 
