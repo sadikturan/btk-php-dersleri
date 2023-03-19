@@ -1,21 +1,72 @@
 <?php
+    include "libs/ayar.php";
     require "libs/variables.php";
     require "libs/functions.php";
 
     session_start();
 
-    if(isset($_POST["login"])) {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+    if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
+        header("Location: index.php");
+    }
 
-        if($username == db_user["username"] && $password == db_user["password"]) {
-            setcookie("auth[username]", db_user["username"], time() + (60 * 60 * 24));
-            setcookie("auth[name]", db_user["name"], time() + (60 * 60 * 24));
-            $_SESSION["message"] = $username." ile hesaba giriş yapıldı";
-            header("Location: index.php");
+    $username = $password = "";
+    $usernameErr = $passwordErr = $loginErr = "";
+
+    if(isset($_POST["login"])) {
+
+        if(empty($_POST["username"])) {
+            $usernameErr = "username gerekli alan.";
         } else {
-            echo "<div class='alert alert-danger mb-0 text-center'>Yanlış username ya da parola</div>";
+            $username = safe_html($_POST["username"]);
         }
+
+        if(empty($_POST["password"])) {
+            $passwordErr = "password gerekli alan.";
+        } else {
+            $password = safe_html($_POST["password"]);
+        }
+
+        if(empty($usernameErr) && empty($passwordErr)) {
+            $sql = "SELECT id, username, password from kullanicilar WHERE username=?";
+
+            if($stmt = mysqli_prepare($baglanti, $sql)) {
+                mysqli_stmt_bind_param($stmt, "s" ,$username);
+
+                if(mysqli_stmt_execute($stmt)) {
+                    mysqli_stmt_store_result($stmt);
+
+                    if(mysqli_stmt_num_rows($stmt) == 1) {
+                        // parola kontrolü
+                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                        if(mysqli_stmt_fetch($stmt)) {
+                            if(password_verify($password, $hashed_password)) {
+                                $_SESSION["loggedIn"] = true;
+                                $_SESSION["id"] = $id;
+                                $_SESSION["username"] = $username;
+
+                                header("Location: index.php");
+                            } else {
+                                $loginErr = "parola yanlış";
+                            }
+                        }
+                    } else {
+                        $loginErr = "username yanlış";
+                    }
+                } else {
+                    $loginErr = "Bir hata oluştu";
+                }
+            }
+            mysqli_stmt_close($stmt);
+            mysqli_close($baglanti);
+        }
+        
+    }
+?>
+
+<?php
+
+    if(!empty($loginErr)) {
+        echo "<div class='alert alert-danger'>".$loginErr."</div>";
     }
 ?>
 
@@ -29,11 +80,13 @@
         <form action="login.php" method="post">
         <div class="mb-3">
             <label for="username">Kullanıcı Adı</label>
-            <input type="text" name="username" class="form-control">
+            <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
+            <div class="text-danger"><?php echo $usernameErr; ?></div>
         </div>
         <div class="mb-3">
             <label for="password">Parola</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" class="form-control" value="<?php echo $password;?>">
+            <div class="text-danger"><?php echo $passwordErr; ?></div>
         </div>
         <button type="submit" class="btn btn-primary" name="login">Login</button>
         </form>
