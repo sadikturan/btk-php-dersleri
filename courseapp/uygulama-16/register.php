@@ -43,6 +43,26 @@
             $repassword = safe_html($_POST["repassword"]);
         }
 
+        if(empty($usernameErr) && empty($emailErr) && empty($passwordErr) && empty($repasswordErr)) {
+            include "libs/ayar.php";
+            $sql = "INSERT INTO kullanicilar(username,email,password) VALUES(?,?,?)";
+
+            if($stmt = mysqli_prepare($baglanti, $sql)) {
+                $param_username = $username;
+                $param_email = $email;
+                $param_password = password_hash($password, PASSWORD_DEFAULT);
+
+                mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
+
+                if(mysqli_stmt_execute($stmt)) {
+                    header("Location: login.php");
+                } else {
+                    echo mysqli_error($baglanti);
+                    echo "<br>";
+                    echo "hata oluştu";
+                }
+            }
+        }
         
     }
 
