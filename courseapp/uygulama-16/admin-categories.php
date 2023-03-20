@@ -1,6 +1,10 @@
 <?php
     require "libs/variables.php";
     require "libs/functions.php";
+
+    if(!isAdmin()) {
+        header("Location: unauthorize.php");
+    }
 ?>
 
 <?php include "partials/_message.php" ?>

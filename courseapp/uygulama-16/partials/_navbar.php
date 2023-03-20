@@ -7,7 +7,7 @@
                 <a href="index.php" class="nav-link active">Anasayfa</a>
             </li>
 
-            <?php if(isLoggedIn()): ?>
+            <?php if(isAdmin()): ?>
                 <li class="nav-item">
                     <a href="admin-categories.php" class="nav-link">Admin Categories</a>
                 </li>

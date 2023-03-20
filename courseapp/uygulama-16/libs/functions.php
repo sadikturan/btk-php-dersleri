@@ -1,8 +1,12 @@
 <?php
-
+session_start();
 
 function isLoggedIn() {
     return (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true);    
+}
+
+function isAdmin() {
+    return (isLoggedIn() && isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin");    
 }
 
 function getCategories() {

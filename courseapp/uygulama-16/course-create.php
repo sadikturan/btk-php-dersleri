@@ -7,7 +7,6 @@
 <?php include "partials/_navbar.php" ?>
 
 <?php
-    session_start();
     $baslikErr = $baslik = "";
     $altBaslikErr = $altBaslik = "";
     $resimErr = $resim = "";
