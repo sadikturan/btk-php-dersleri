@@ -3,8 +3,6 @@
     require "libs/variables.php";
     require "libs/functions.php";
 
-    session_start();
-
     if(isLoggedIn()) {
         header("Location: index.php");
     }
@@ -27,7 +25,7 @@
         }
 
         if(empty($usernameErr) && empty($passwordErr)) {
-            $sql = "SELECT id, username, password from kullanicilar WHERE username=?";
+            $sql = "SELECT id, username, password, user_type from kullanicilar WHERE username=?";
 
             if($stmt = mysqli_prepare($baglanti, $sql)) {
                 mysqli_stmt_bind_param($stmt, "s" ,$username);
@@ -37,12 +35,13 @@
 
                     if(mysqli_stmt_num_rows($stmt) == 1) {
                         // parola kontrolü
-                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $user_type);
                         if(mysqli_stmt_fetch($stmt)) {
                             if(password_verify($password, $hashed_password)) {
                                 $_SESSION["loggedIn"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
+                                $_SESSION["user_type"] = $user_type;
 
                                 header("Location: index.php");
                             } else {

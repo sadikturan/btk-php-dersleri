@@ -7,7 +7,6 @@
 <?php include "partials/_navbar.php" ?>
 
 <?php
-    session_start();
     $categoryErr = $category = "";
 
     if($_SERVER["REQUEST_METHOD"]=="POST") {

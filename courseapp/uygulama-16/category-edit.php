@@ -7,8 +7,6 @@
 <?php include "partials/_navbar.php" ?>
 
 <?php
-    session_start();
-
     $id = $_GET["id"];
     $sonuc = getCategoryById($id);
     $selectedCategory = mysqli_fetch_assoc($sonuc);
