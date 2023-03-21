@@ -56,23 +56,44 @@
 
     // multiple insert
 
-    $title = "Samsung S25";
-    $price = 30000;
-    $description = "güzel telefon";
+    // $title = "Samsung S25";
+    // $price = 30000;
+    // $description = "güzel telefon";
 
-    $sql = "INSERT INTO products(title,price,description) VALUES(:title,:price,:description)";
+    // $sql = "INSERT INTO products(title,price,description) VALUES(:title,:price,:description)";
+    // $stmt = $pdo->prepare($sql);
+
+    // $stmt->bindParam(':title', $title);
+    // $stmt->bindParam(':price', $price);
+    // $stmt->bindParam(':description', $description);
+
+    // $stmt->execute();
+
+    // $title = "Samsung S26";
+    // $price = 30000;
+    // $description = "güzel telefon";
+
+    // $stmt->execute();
+
+    // kayıt güncelleme
+
+    // $id = 1;
+    // $title = "updated";
+
+    // $sql = "UPDATE products SET title=:title WHERE id=:id";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(['id'=> $id, 'title'=>$title]);
+
+    // echo "güncellendi: ".$stmt->rowCount();
+
+    // kayıt silme
+
+    $id = 1;
+
+    $sql = "DELETE FROM products WHERE id=:id";
     $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id'=> $id]);
 
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':description', $description);
-
-    $stmt->execute();
-
-    $title = "Samsung S26";
-    $price = 30000;
-    $description = "güzel telefon";
-
-    $stmt->execute();
+    echo "silindi: ".$stmt->rowCount();
 
 ?>
