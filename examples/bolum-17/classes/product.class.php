@@ -36,6 +36,14 @@
                 'price' => $price,
             ]);
         }
+
+        public function deleteProduct($id) {
+            $sql = "DELETE FROM products WHERE id=:id";
+            $stmt = $this->connect()->prepare($sql);
+            return $stmt->execute([
+                'id' => $id
+            ]);
+        }
     }
 
 

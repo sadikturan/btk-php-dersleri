@@ -18,7 +18,10 @@
                         <td><?php echo $item->description?></td>
                         <td >
                             <a href="edit-product.php?id=<?php echo $item->id?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                            <form action="delete-product.php" method="post" style="display:inline;">
+                                <input type="hidden" name="productId" value="<?php echo $item->id?>">
+                                <button type="submit" name="deleteProduct" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
                     </tr>    
                 <?php endforeach;?>
