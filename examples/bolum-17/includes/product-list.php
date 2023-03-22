@@ -17,7 +17,7 @@
                         <td><?php echo $item->price?></td>
                         <td><?php echo $item->description?></td>
                         <td >
-                            <a href="" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="edit-product.php?id=<?php echo $item->id?>" class="btn btn-primary btn-sm">Edit</a>
                             <a href="" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>    
