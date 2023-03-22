@@ -25,6 +25,17 @@
                 'price' => $price,
             ]);
         }
+
+        public function editProduct($id, $title, $description, $price) {
+            $sql = "UPDATE products SET title=:title, description=:description, price=:price WHERE id=:id";
+            $stmt = $this->connect()->prepare($sql);
+            return $stmt->execute([
+                'id' => $id,
+                'title' => $title,
+                'description' => $description,
+                'price' => $price,
+            ]);
+        }
     }
 
 
