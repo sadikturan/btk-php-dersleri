@@ -24,7 +24,7 @@
 
 use Random\BrokenRandomEngineError;
 
-    $not = 70;
+    // $not = 100;
 
     // if($not>=0 and $not<25){
     //     echo "notunuz: 0";
@@ -36,7 +36,7 @@ use Random\BrokenRandomEngineError;
     //     echo "notunuz: 3";
     // } elseif ($not>=70 and $not<85) {
     //     echo "notunuz: 4";
-    // } elseif ($not>=85 and $not<100) {
+    // } elseif ($not>=85 and $not<=100) {
     //     echo "notunuz: 5";
     // } else {
     //     echo "yanlış";
@@ -68,30 +68,30 @@ use Random\BrokenRandomEngineError;
 
     $ay = "temmuz";
 
-    switch($ay) {
-        case "aralık":
-        case "ocak":
-        case "şubat":
-            echo "kış";
-            break;
-        case "mart":
-        case "nisan":
-        case "mayıs":
-            echo "ilkbahar";
-            break;
-        case "haziran":
-        case "temmuz":
-        case "ağustos":
-            echo "yaz";
-            break;
-        case "eylül":
-        case "ekim":
-        case "kasım":
-            echo "sonbahar";
-            break;
-        default:
-            echo "yanlış";
-    }
+    // switch($ay) {
+    //     case "aralık":
+    //     case "ocak":
+    //     case "şubat":
+    //         echo "kış";
+    //         break;
+    //     case "mart":
+    //     case "nisan":
+    //     case "mayıs":
+    //         echo "ilkbahar";
+    //         break;
+    //     case "haziran":
+    //     case "temmuz":
+    //     case "ağustos":
+    //         echo "yaz";
+    //         break;
+    //     case "eylül":
+    //     case "ekim":
+    //     case "kasım":
+    //         echo "sonbahar";
+    //         break;
+    //     default:
+    //         echo "yanlış";
+    // }
 
 
 
